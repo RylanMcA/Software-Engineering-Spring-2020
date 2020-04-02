@@ -20,6 +20,7 @@ import edu.uark.registerapp.models.entities.EmployeeEntity;
 import edu.uark.registerapp.models.repositories.ActiveUserRepository;
 import edu.uark.registerapp.models.repositories.EmployeeRepository;
 
+//For the commit
 @Service
 public class EmployeeSignInCommand implements ResultCommandInterface<Employee> {
 	@Override
