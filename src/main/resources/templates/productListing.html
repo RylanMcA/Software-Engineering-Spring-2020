@@ -21,6 +21,12 @@
 			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
 		</div>
 
+		<div id="search">
+			<input type="text" placeholder="Search Lookup Code"> <button type="button">Go</button>
+			<br>
+			<br>
+		</div>
+
 		<div class="productsWrapper">
 			<div th:class="not ${isElevatedUser} ? hidden : ''">
 				<a href="/productDetail/" class="button">Create New</a>
