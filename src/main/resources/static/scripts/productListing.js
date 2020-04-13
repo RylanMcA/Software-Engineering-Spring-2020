@@ -32,3 +32,8 @@ function productClick(event) {
 		"/productDetail/"
 		+ listItem.querySelector("input[name='productId'][type='hidden']").value);
 }
+
+function productSearch() {
+	// temporary alert
+	alert(document.getElementById("searchInput").value);
+}
