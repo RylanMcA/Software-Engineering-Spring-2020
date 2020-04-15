@@ -13,6 +13,11 @@ h1.primary-message {
 	text-align: center;
 }
 
+h2.secondary-message {
+	font-size: 10px;
+	text-align: center;
+}
+
 h3.header-message {
 	font-size: 15px;
 }
