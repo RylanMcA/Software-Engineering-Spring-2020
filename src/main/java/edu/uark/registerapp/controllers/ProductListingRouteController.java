@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.uark.registerapp.commands.products.ProductsQuery;
+import edu.uark.registerapp.commands.products.ProductsSearch;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
@@ -43,9 +44,14 @@ public class ProductListingRouteController extends BaseRouteController {
 			this.isElevatedUser(activeUserEntity.get()));
 
 		try {
+			// if no search is entered, show all products
 			modelAndView.addObject(
 				ViewModelNames.PRODUCTS.getValue(),
 				this.productsQuery.execute());
+			// if a search term is entered, 
+			// modelAndView.addObject(
+			// 	ViewModelNames.PRODUCTS.getValue(), 
+			// 	this.productsSearch.execute());
 		} catch (final Exception e) {
 			modelAndView.addObject(
 				ViewModelNames.ERROR_MESSAGE.getValue(),
@@ -61,4 +67,5 @@ public class ProductListingRouteController extends BaseRouteController {
 	// Properties
 	@Autowired
 	private ProductsQuery productsQuery;
+	private ProductsSearch productsSearch;
 }
