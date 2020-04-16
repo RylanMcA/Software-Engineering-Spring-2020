@@ -49,10 +49,9 @@ public class ShoppingCartController extends BaseRouteController {
 			this.isElevatedUser(activeUserEntity.get()));
 
 		try {
-			// if no search is entered, show all products
+			// if no search is entered, show all products in cart
 			modelAndView.addObject(
-				ViewModelNames.PRODUCTS.getValue(),
-				this.productsQuery.execute());
+				ViewModelNames.CART.getValue());
 			// if a search term is entered, 
 			// modelAndView.addObject(
 			// 	ViewModelNames.PRODUCTS.getValue(), 
@@ -62,7 +61,7 @@ public class ShoppingCartController extends BaseRouteController {
 				ViewModelNames.ERROR_MESSAGE.getValue(),
 				e.getMessage());
 			modelAndView.addObject(
-				ViewModelNames.PRODUCTS.getValue(),
+				ViewModelNames.CART.getValue(),
 				(new Product[0]));
 		}
 		

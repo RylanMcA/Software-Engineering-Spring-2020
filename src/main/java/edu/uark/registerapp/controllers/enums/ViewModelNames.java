@@ -4,6 +4,7 @@ public enum ViewModelNames {
 	NOT_DEFINED(""),
 	ERROR_MESSAGE("errorMessage"),
 	IS_ELEVATED_USER("isElevatedUser"),
+	CART("cart"), // Shopping cart
 	PRODUCTS("products"), // Product listing
 	PRODUCT("product"), // Product detail
 	EMPLOYEE_ID("employeeId"), // Sign in
