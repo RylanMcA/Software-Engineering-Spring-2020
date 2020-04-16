@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.uark.registerapp.commands.products.ProductQuery;
+import edu.uark.registerapp.commands.products.ProductsQuery;
+import edu.uark.registerapp.commands.products.ProductsSearch;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
-import edu.uark.registerapp.models.enums.EmployeeClassification;
 
 
 @Controller
@@ -32,29 +32,47 @@ public class ShoppingCartController extends BaseRouteController {
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
 	) {
+
 		final Optional<ActiveUserEntity> activeUserEntity =
 			this.getCurrentUser(request);
 		if (!activeUserEntity.isPresent()) {
-			return this.buildInvalidSessionResponse();
-		} else if (!this.isElevatedUser(activeUserEntity.get())) {
-			return this.buildNoPermissionsResponse(
-				ViewNames.PRODUCT_LISTING.getRoute());
+			return buildInvalidSessionResponse();
 		}
 
-		final ModelAndView modelAndView =
+		ModelAndView modelAndView =
 			this.setErrorMessageFromQueryString(
-				new ModelAndView(ViewNames.PRODUCT_DETAIL.getViewName()),
+				new ModelAndView(ViewNames.PRODUCT_LISTING.getViewName()),
 				queryParameters);
 
 		modelAndView.addObject(
 			ViewModelNames.IS_ELEVATED_USER.getValue(),
-			true);
-		modelAndView.addObject(
-			ViewModelNames.PRODUCT.getValue(),
-			(new Product()).setLookupCode(StringUtils.EMPTY).setCount(0));
+			this.isElevatedUser(activeUserEntity.get()));
 
+		try {
+			// if no search is entered, show all products
+			modelAndView.addObject(
+				ViewModelNames.PRODUCTS.getValue(),
+				this.productsQuery.execute());
+			// if a search term is entered, 
+			// modelAndView.addObject(
+			// 	ViewModelNames.PRODUCTS.getValue(), 
+			// 	this.productsSearch.execute());
+		} catch (final Exception e) {
+			modelAndView.addObject(
+				ViewModelNames.ERROR_MESSAGE.getValue(),
+				e.getMessage());
+			modelAndView.addObject(
+				ViewModelNames.PRODUCTS.getValue(),
+				(new Product[0]));
+		}
+		
 		return modelAndView;
-	}
+    }
+    
+    // Properties
+	@Autowired
+	private ProductsQuery productsQuery;
+	private ProductsSearch productsSearch;
 
     //This is a method for adding a product to the cart
     //If the product is in the cart, add more
