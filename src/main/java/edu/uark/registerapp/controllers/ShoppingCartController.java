@@ -41,7 +41,7 @@ public class ShoppingCartController extends BaseRouteController {
 
 		ModelAndView modelAndView =
 			this.setErrorMessageFromQueryString(
-				new ModelAndView(ViewNames.PRODUCT_LISTING.getViewName()),
+				new ModelAndView(ViewNames.SHOPPING_CART.getViewName()),
 				queryParameters);
 
 		modelAndView.addObject(
