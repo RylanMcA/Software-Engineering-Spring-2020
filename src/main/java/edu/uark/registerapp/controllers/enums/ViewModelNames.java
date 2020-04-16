@@ -5,6 +5,7 @@ public enum ViewModelNames {
 	ERROR_MESSAGE("errorMessage"),
 	IS_ELEVATED_USER("isElevatedUser"),
 	CART("cart"), // Shopping cart
+	PAYMENT("payment"), // Payment 
 	PRODUCTS("products"), // Product listing
 	PRODUCT("product"), // Product detail
 	EMPLOYEE_ID("employeeId"), // Sign in
