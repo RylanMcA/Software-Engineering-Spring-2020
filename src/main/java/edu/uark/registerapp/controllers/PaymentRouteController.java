@@ -33,9 +33,28 @@ public class PaymentRouteController extends BaseRouteController {
 		if (!activeUserEntity.isPresent()) {
 			return buildInvalidSessionResponse();
         }
-        
+
+        ModelAndView modelAndView = 
+            this.setErrorMessageFromQueryString(
+                new ModelAndView(
+                    ViewNames.PAYMENT_PAGE.getViewName()), 
+                    queryParameters);
+
+        modelAndView.addObject(
+            ViewModelNames.IS_ELEVATED_USER.getValue(),
+            this.isElevatedUser(activeUserEntity.get()));
+
         try {
-            
+            modelAndView.addObject(
+                ViewModelNames.PAYMENT.getValue());
+        }catch (final Exception e) {
+            modelAndView.addObject(
+                ViewModelNames.ERROR_MESSAGE.getValue(),
+                e.getMessage());
+            modelAndView.addObject(
+                ViewModelNames.PAYMENT.getValue());
         }
+
+        return modelAndView;
     }
 }
