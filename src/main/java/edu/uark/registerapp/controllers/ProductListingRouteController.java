@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.uark.registerapp.commands.products.ProductsQuery;
-import edu.uark.registerapp.commands.products.ProductsSearch;
+//import edu.uark.registerapp.commands.products.ProductsSearch;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
@@ -67,5 +67,5 @@ public class ProductListingRouteController extends BaseRouteController {
 	// Properties
 	@Autowired
 	private ProductsQuery productsQuery;
-	private ProductsSearch productsSearch;
+	//private ProductsSearch productsSearch;
 }

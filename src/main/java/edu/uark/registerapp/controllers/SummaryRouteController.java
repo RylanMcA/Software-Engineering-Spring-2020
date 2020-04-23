@@ -43,12 +43,15 @@ public class SummaryRouteController extends BaseRouteController {
 			this.isElevatedUser(activeUserEntity.get()));
 
 		try {
+            modelAndView.addObject(
+				ViewModelNames.CART.getValue(),
+				this.productsQuery.execute());
 		} catch (final Exception e) {
 			modelAndView.addObject(
 				ViewModelNames.ERROR_MESSAGE.getValue(),
 				e.getMessage());
 			modelAndView.addObject(
-				ViewModelNames.PRODUCTS.getValue(),
+				ViewModelNames.CART.getValue(),
 				(new Product[0]));
 		}
 		
