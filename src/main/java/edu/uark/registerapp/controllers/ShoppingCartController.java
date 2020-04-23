@@ -17,14 +17,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.uark.registerapp.commands.products.ProductsQuery;
-import edu.uark.registerapp.commands.products.ProductsSearch;
+import edu.uark.registerapp.commands.products.ProductCreateCommand;
+import edu.uark.registerapp.commands.products.ProductDeleteCommand;
+import edu.uark.registerapp.commands.products.ProductUpdateCommand;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@Controller
+@RestController
 @RequestMapping(value = "/cart")
 public class ShoppingCartController extends BaseRouteController {
     @RequestMapping(method = RequestMethod.GET)
@@ -85,10 +88,32 @@ public class ShoppingCartController extends BaseRouteController {
     //If the product is in the cart, remove it
     //User should not be able to remove an item that doesn't exist
 
-	/*@RequestMapping()
-	public ModelAndView remove() {
-		return (new ModelAndView());
-    }*/
+/*	
+	@RequestMapping(value = "/{productId}", method = RequestMethod.DELETE)
+	public @ResponseBody ApiResponse deleteFromCart(
+		@PathVariable final UUID productId, 
+		final HttpServletRequest request,
+		final HttpServletResponse response
+	) {
+
+		final ApiResponse elevatedUserResponse =
+			this.redirectUserNotElevated(
+				request,
+				response,
+				ViewNames.PRODUCT_LISTING.getRoute());
+
+		if (!elevatedUserResponse.getRedirectUrl().equals(StringUtils.EMPTY)) {
+			return elevatedUserResponse;
+		}
+
+		this.productDeleteCommand
+			.setProductId(productId)
+			.execute();
+
+		return new ApiResponse();
+	}
+	
+*/
     
     //This is the method for empyting the shopping cart
     //Removes all products from the cart
