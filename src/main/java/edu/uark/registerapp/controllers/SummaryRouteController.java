@@ -22,7 +22,7 @@ import edu.uark.registerapp.models.entities.ActiveUserEntity;
 @RequestMapping(value = "/txnSummary")
 public class SummaryRouteController extends BaseRouteController {
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView showProductListing(
+	public ModelAndView showSummary(
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
 	) {
@@ -35,7 +35,7 @@ public class SummaryRouteController extends BaseRouteController {
 
 		ModelAndView modelAndView =
 			this.setErrorMessageFromQueryString(
-				new ModelAndView(ViewNames.PRODUCT_LISTING.getViewName()),
+				new ModelAndView(ViewNames.SHOPPING_CART.getViewName()),
 				queryParameters);
 
 		modelAndView.addObject(
