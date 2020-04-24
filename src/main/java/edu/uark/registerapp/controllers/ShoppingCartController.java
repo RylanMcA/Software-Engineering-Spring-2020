@@ -20,6 +20,7 @@ import edu.uark.registerapp.commands.products.ProductsQuery;
 import edu.uark.registerapp.commands.products.ProductCreateCommand;
 import edu.uark.registerapp.commands.products.ProductDeleteCommand;
 import edu.uark.registerapp.commands.products.ProductUpdateCommand;
+import edu.uark.registerapp.commands.products.ProductsSearch;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
@@ -73,8 +74,8 @@ public class ShoppingCartController extends BaseRouteController {
     
     // Properties
 	@Autowired
-	private ProductsQuery productsQuery;
-	private ProductsSearch productsSearch;
+	//private ProductsQuery productsQuery;
+	//private ProductsSearch productsSearch;
 
     //This is a method for adding a product to the cart
     //If the product is in the cart, add more
