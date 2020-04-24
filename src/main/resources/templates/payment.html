@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
 
 <head>
 
@@ -6,6 +6,9 @@
     <meta title="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="/styles/master.css">
+
+    <script type="text/javascript" src="/scripts/master.js" defer></script>
+    <script type="text/javascript" src="/scripts/payment.js" defer></script>
 </head>
 
 <body>
@@ -15,7 +18,11 @@
 </div>
 
 <div id="main" class="main">
-    <form class="inputContent">
+    <div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+        <h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+    </div>
+
+    <form action="/payment" class="inputContent" method="POST" onsubmit="return validateForm();">
         <label for="cardNum"> Credit Card Number:</label><br>
         <input type="text" id="cardNum" name="cardNum" placeholder="0123 4567 8901 2345" class="update"><br>
         <label for="expDate"> Expiration Date:</label><br>
