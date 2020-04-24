@@ -15,14 +15,14 @@
 		<h1 class="primary-message">Transaction Summary</h1>
 	  </div>
 
-    <ul id="productsListing" class="products">
+    <ul id="shoppingCart" class="products">
         <li th:each="inCart : ${cart}">
           <input type="hidden" name="productId" th:value="${inCart.id}" />
-        <span class="productLookupCodeDisplay" th:text="${inCart.lookupCode}">lookupCode</span>
-        <br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${inCart.quantity}">0</span>
-        <br />&nbsp;&nbsp;<span type ="hidden" class="productCreatedOnDisplay" th:text="${inCart.price}">12/31/1999</span>
-        <br />&nbsp;&nbsp;<span class="productCreatedOnDisplay">12/31/1999</span>
-        <br />&nbsp;&nbsp;<span class="productCreatedOnDisplay" th:text="${inCart.createdOn}">12/31/1999</span>
+        <span class="cartLookupCodeDisplay" th:text="${inCart.lookupCode}">lookupCode</span>
+        <br />&nbsp;&nbsp;<span class="cartCountDisplay" th:text="${inCart.quantity}">0</span>
+        <br />&nbsp;&nbsp;<span type ="hidden" class="cartCreatedOnDisplay" th:text="${inCart.price}">0</span>
+        <br />&nbsp;&nbsp;<span class="cartCreatedOnDisplay">0.00</span>
+        <br />&nbsp;&nbsp;<span class="cartCreatedOnDisplay" type="hidden" th:text="${inCart.createdOn}"></span>
       </li>
     </ul>
 
