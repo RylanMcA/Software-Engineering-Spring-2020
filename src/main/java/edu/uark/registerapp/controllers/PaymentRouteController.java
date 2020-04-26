@@ -23,15 +23,7 @@
  public class PaymentRouteController extends BaseRouteController {
      @RequestMapping(method = RequestMethod.GET)
      public ModelAndView showPaymentPage( 
-         @RequestParam final Map<String, String> queryParameters,
-         final HttpServletRequest request
-     ) {
-
-        final Optional<ActiveUserEntity> activeUserEntity =
-			this.getCurrentUser(request);
-		if (!activeUserEntity.isPresent()) {
-			return buildInvalidSessionResponse();
-        }
+         @RequestParam final Map<String, String> queryParameters) {
 
         ModelAndView modelAndView = 
             this.setErrorMessageFromQueryString(
@@ -39,20 +31,13 @@
                     ViewNames.PAYMENT_PAGE.getViewName()), 
                     queryParameters);
 
-        modelAndView.addObject(
-            ViewModelNames.IS_ELEVATED_USER.getValue(),
-            this.isElevatedUser(activeUserEntity.get()));
+        return modelAndView;
 
-        try {
-            modelAndView.addObject(
-                ViewModelNames.PAYMENT.getValue());
-        }catch (final Exception e) {
-            modelAndView.addObject(
-                ViewModelNames.ERROR_MESSAGE.getValue(),
-                e.getMessage());
-            modelAndView.addObject(
-                ViewModelNames.PAYMENT.getValue());
-        }
+     @RequestMapping(method = RequestMethod.POST)
+     public ModelAndView ShowTxnSummary() {
+
+        return new ModelAndView(ViewNames.TXN_SUMMARY.getViewName());
+     }
 
         return modelAndView;
     }
