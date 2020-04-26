@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.uark.registerapp.commands.products.ProductsQuery;
-import edu.uark.registerapp.commands.products.ProductCreateCommand;
-import edu.uark.registerapp.commands.products.ProductDeleteCommand;
-import edu.uark.registerapp.commands.products.ProductUpdateCommand;
-import edu.uark.registerapp.commands.products.ProductsSearch;
+// import edu.uark.registerapp.commands.products.ProductsQuery;
+// import edu.uark.registerapp.commands.products.ProductCreateCommand;
+// import edu.uark.registerapp.commands.products.ProductDeleteCommand;
+// import edu.uark.registerapp.commands.products.ProductUpdateCommand;
+// import edu.uark.registerapp.commands.products.ProductsSearch;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;

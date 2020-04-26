@@ -33,12 +33,12 @@
 
         return modelAndView;
 
-     @RequestMapping(method = RequestMethod.POST)
-     public ModelAndView ShowTxnSummary() {
+    //  @RequestMapping(method = RequestMethod.POST)
+    //  public ModelAndView ShowTxnSummary() {
 
-        return new ModelAndView(ViewNames.TXN_SUMMARY.getViewName());
-     }
+    //     return new ModelAndView(ViewNames.TXN_SUMMARY.getViewName());
+    //  }
 
-        return modelAndView;
+    //     return modelAndView;
     }
 }

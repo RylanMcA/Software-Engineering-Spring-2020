@@ -35,7 +35,7 @@ public class SummaryRouteController extends BaseRouteController {
 
 		ModelAndView modelAndView =
 			this.setErrorMessageFromQueryString(
-				new ModelAndView(ViewNames.SHOPPING_CART.getViewName()),
+				new ModelAndView(ViewNames.TXN_SUMMARY.getViewName()),
 				queryParameters);
 
 		modelAndView.addObject(
