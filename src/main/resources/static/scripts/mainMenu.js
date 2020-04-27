@@ -1,43 +1,49 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-	getStartTransactionActionElement().addEventListener(
-		"click",
-		() => { displayError("Functionality has not yet been implemented."); });
-
-	getViewProductsActionElement().addEventListener(
-		"click",
-		() => { window.location.assign("/productListing"); });
-
-	getCreateEmployeeActionElement().addEventListener(
-		"click",
-		() => { window.location.assign("/employeeDetail"); });
-
-	getProductSalesReportActionElement().addEventListener(
-		"click",
-		() => { displayError("Functionality has not yet been implemented."); });
-
-	getCashierSalesReportActionElement().addEventListener(
-		"click",
-		() => { displayError("Functionality has not yet been implemented."); });
+document.addEventListener("DOMContentLoaded", () => {	
+    getTransactionIdElement().addEventListener("click", txnActionClick);
+    getProductListIdElement().addEventListener("click", prodActionClick);
+    getEmployeeCreateIdElement().addEventListener("click",createActionClick);
+    getEmployeeDetailIdElement().addEventListener("click",detailActionClick);
+    getReportIdElement().addEventListener("click",reportActionClick);
 });
 
-// Getters and setters
-function getViewProductsActionElement() {
-	return document.getElementById("viewProductsButton");
+function txnActionClick(event){
+    displayError("Functionality has not been implemented yet");
 }
 
-function getCreateEmployeeActionElement() {
-	return document.getElementById("createEmployeeButton");
+function prodActionClick(event){
+    window.location.assign("productListing");
 }
 
-function getStartTransactionActionElement() {
-	return document.getElementById("startTransactionButton");
+function createActionClick(event){
+    window.location.assign("employeeDetail");
 }
 
-function getProductSalesReportActionElement() {
-	return document.getElementById("productSalesReportButton");
+function detailActionClick(event){
+    displayError("Functionality has not been implemented yet");
 }
 
-function getCashierSalesReportActionElement() {
-	return document.getElementById("cashierSalesReportButton");
+function reportActionClick(event){
+    displayError("Functionality has not been implemented yet");
 }
-// End getters and setters
+
+
+//Getters
+function getTransactionIdElement(){
+    return document.getElementById("startTxn");
+}
+
+function getProductListIdElement(){
+    return document.getElementById("prodList");
+}
+
+function getEmployeeCreateIdElement(){
+    return document.getElementById("empCreate");
+}
+
+function getEmployeeDetailIdElement(){
+    return document.getElementById("empDetails");
+}
+
+function getReportIdElement(){
+    return document.getElementById("cashReport");
+}

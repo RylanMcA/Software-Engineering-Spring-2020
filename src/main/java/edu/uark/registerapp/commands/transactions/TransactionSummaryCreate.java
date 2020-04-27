@@ -17,18 +17,21 @@ import edu.uark.registerapp.models.entities.TransactionEntity;
 import edu.uark.registerapp.models.entities.TransactionEntryEntity;
 import edu.uark.registerapp.models.repositories.TransactionEntryRepository;
 import edu.uark.registerapp.models.repositories.TransactionRepository;
+import edu.uark.registerapp.models.repositories.ActiveUserRepository;
 import edu.uark.registerapp.models.repositories.EmployeeRepository;
+import edu.uark.registerapp.models.repositories.ProductRepository;
 
 @Service
 public class TransactionSummaryCreate implements ResultCommandInterface<List<Product>> {
     @Override
     public List<Product> execute() {
         final LinkedList<Product> summary = new LinkedList<Product>();
-        List<TransactionEntity> cashierId = transactionRepository.findByCashierId(activeUserId);
         
-        for (final TransactionEntryEntity transactionEntity : transactionEntryRepository.findByTransactionId(transactionId)) {
-            
-		}
+        
+        // for (final TransactionEntity transactionEntity : transactionRepository.findById(transactionId)) {
+
+
+		// }
 		
 		return summary;
     }
@@ -60,7 +63,13 @@ public class TransactionSummaryCreate implements ResultCommandInterface<List<Pro
     }
 
 	@Autowired
-	private TransactionRepository transactionRepository;
+    private TransactionRepository transactionRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+    
+    @Autowired
+    private ActiveUserRepository activeUser;
 
 	@Autowired
     private TransactionEntryRepository transactionEntryRepository;
