@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.uark.registerapp.commands.products.ProductsQuery;
+import edu.uark.registerapp.commands.transactions.DummyTransactionCreateCommand;
 //import edu.uark.registerapp.commands.products.ProductsSearch;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
@@ -33,6 +34,9 @@ public class ProductListingRouteController extends BaseRouteController {
 		if (!activeUserEntity.isPresent()) {
 			return buildInvalidSessionResponse();
 		}
+
+		
+		createDummy.execute();
 
 		ModelAndView modelAndView =
 			this.setErrorMessageFromQueryString(
@@ -65,8 +69,32 @@ public class ProductListingRouteController extends BaseRouteController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/{transactionId}", method = RequestMethod.POST)
+		public ModelAndView showActiveListing(
+			@RequestParam final Map<String, String> queryParameters,
+			final HttpServletRequest request
+		){
+			final Optional<ActiveUserEntity> activeUserEntity =
+			this.getCurrentUser(request);
+				if (!activeUserEntity.isPresent()) {
+			return buildInvalidSessionResponse();
+		}
+			ModelAndView modelAndView =
+			this.setErrorMessageFromQueryString(
+				new ModelAndView(ViewNames.PRODUCT_LISTING.getViewName()),
+				queryParameters);
+
+			modelAndView.addObject(
+				ViewModelNames.IS_ELEVATED_USER.getValue(),
+				this.isElevatedUser(activeUserEntity.get()));
+
+			return modelAndView;
+		}
+
+
 	// Properties
 	@Autowired
 	private ProductsQuery productsQuery;
 	//private ProductsSearch productsSearch;
+	private DummyTransactionCreateCommand createDummy;
 }

@@ -10,10 +10,6 @@ import org.springframework.stereotype.Service;
 
 import edu.uark.registerapp.commands.ResultCommandInterface;
 import edu.uark.registerapp.models.api.Product;
-import edu.uark.registerapp.models.entities.ActiveUserEntity;
-import edu.uark.registerapp.models.entities.EmployeeEntity;
-import edu.uark.registerapp.models.entities.ProductEntity;
-import edu.uark.registerapp.models.entities.TransactionEntity;
 import edu.uark.registerapp.models.entities.TransactionEntryEntity;
 import edu.uark.registerapp.models.repositories.TransactionEntryRepository;
 import edu.uark.registerapp.models.repositories.TransactionRepository;
@@ -28,10 +24,10 @@ public class TransactionSummaryCreate implements ResultCommandInterface<List<Pro
         final LinkedList<Product> summary = new LinkedList<Product>();
         
         
-        // for (final TransactionEntity transactionEntity : transactionRepository.findById(transactionId)) {
+        for (final TransactionEntryEntity transactionEntity : transactionEntryRepository.findByTransactionId(this.transactionId)) {
+            //summary.addLast(new Product(productRepository.findById(transactionEntity.getProductId())));
 
-
-		// }
+		}
 		
 		return summary;
     }

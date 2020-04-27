@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function txnActionClick(event){
-    displayError("Functionality has not been implemented yet");
+    window.location.assign("cart");
 }
 
 function prodActionClick(event){
