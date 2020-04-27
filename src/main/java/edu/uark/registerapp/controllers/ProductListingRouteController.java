@@ -43,6 +43,7 @@ public class ProductListingRouteController extends BaseRouteController {
 			ViewModelNames.IS_ELEVATED_USER.getValue(),
 			this.isElevatedUser(activeUserEntity.get()));
 
+
 		try {
 			// if no search is entered, show all products
 			modelAndView.addObject(
