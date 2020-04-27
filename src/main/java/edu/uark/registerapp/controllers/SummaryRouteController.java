@@ -20,6 +20,7 @@ import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
+import edu.uark.registerapp.models.enums.EmployeeClassification;
 import edu.uark.registerapp.models.repositories.ProductRepository;
 import edu.uark.registerapp.models.repositories.TransactionEntryRepository;
 import edu.uark.registerapp.models.repositories.TransactionRepository;
@@ -32,49 +33,40 @@ public class SummaryRouteController extends BaseRouteController {
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
 	) {
-
-		final Optional<ActiveUserEntity> activeUserEntity =
-			this.getCurrentUser(request);
-		if (!activeUserEntity.isPresent()) {
-			return buildInvalidSessionResponse();
-		}
-
-		this.summaryCreate.execute();
-
-		ModelAndView modelAndView =
-			this.setErrorMessageFromQueryString(
-				new ModelAndView(ViewNames.TXN_SUMMARY.getViewName()),
-				queryParameters);
-
-		modelAndView.addObject(
-			ViewModelNames.IS_ELEVATED_USER.getValue(),
-			this.isElevatedUser(activeUserEntity.get()));
-
-		try {
-            modelAndView.addObject(
-				ViewModelNames.CART.getValue(),
-				this.productsQuery.execute());
-		} catch (final Exception e) {
-			modelAndView.addObject(
-				ViewModelNames.ERROR_MESSAGE.getValue(),
-				e.getMessage());
-			modelAndView.addObject(
-				ViewModelNames.CART.getValue(),
-				(new Product[0]));
-		}
-		
-		return modelAndView;
+		//If they're here with a transaction Id, reutnr them to main menu
+		return this.buildNoPermissionsResponse("/mainMenu");
 	}
 
 	@RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
 	public ModelAndView startWithId(
-		@PathVariable final UUID productId,
+		@PathVariable final UUID transactionId,
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
 	){
+		final Optional<ActiveUserEntity> activeUserEntity =
+			this.getCurrentUser(request);
+		if (!activeUserEntity.isPresent()) {
+			return this.buildInvalidSessionResponse();
+		} else if (!this.isElevatedUser(activeUserEntity.get())) {
+			return this.buildNoPermissionsResponse(
+				ViewNames.PRODUCT_LISTING.getRoute());
+		}
 
+		final ModelAndView modelAndView =
+			this.setErrorMessageFromQueryString(
+				new ModelAndView(ViewNames.PRODUCT_DETAIL.getViewName()),
+				queryParameters);
+
+		modelAndView.addObject(
+			ViewModelNames.IS_ELEVATED_USER.getValue(),
+			EmployeeClassification.isElevatedUser(
+				activeUserEntity.get().getClassification()));
+				
+		modelAndView.addObject("Summary",
+		this.summaryCreate.setProductId(transactionId).execute());
+
+		return modelAndView;
 	}
-
 
 	// Properties
 	@Autowired

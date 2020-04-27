@@ -37,6 +37,11 @@ public class TransactionSummaryCreate implements ResultCommandInterface<List<Pro
     }
     
     // Properties
+	public TransactionSummaryCreate setProductId(final UUID productId) {
+		this.productId = productId;
+		return this;
+	}
+
 	private UUID productId;
 	public UUID getProductId() {
 		return this.productId;
