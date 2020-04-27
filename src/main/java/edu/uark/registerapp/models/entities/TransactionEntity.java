@@ -115,4 +115,8 @@ public class TransactionEntity {
 		this.cashierId = cashierId;
 		this.referenceId = referenceId;
 	}
+
+	public TransactionEntity(final UUID cashierId) {
+		this(cashierId, 0L, 0);
+	}
 }
