@@ -69,27 +69,27 @@ public class ProductListingRouteController extends BaseRouteController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/{transactionId}", method = RequestMethod.POST)
-		public ModelAndView showActiveListing(
-			@RequestParam final Map<String, String> queryParameters,
-			final HttpServletRequest request
-		){
-			final Optional<ActiveUserEntity> activeUserEntity =
-			this.getCurrentUser(request);
-				if (!activeUserEntity.isPresent()) {
-			return buildInvalidSessionResponse();
-		}
-			ModelAndView modelAndView =
-			this.setErrorMessageFromQueryString(
-				new ModelAndView(ViewNames.PRODUCT_LISTING.getViewName()),
-				queryParameters);
+	// @RequestMapping(value = "/{transactionId}", method = RequestMethod.POST)
+	// 	public ModelAndView showActiveListing(
+	// 		@RequestParam final Map<String, String> queryParameters,
+	// 		final HttpServletRequest request
+	// 	){
+	// 		final Optional<ActiveUserEntity> activeUserEntity =
+	// 		this.getCurrentUser(request);
+	// 			if (!activeUserEntity.isPresent()) {
+	// 		return buildInvalidSessionResponse();
+	// 	}
+	// 		ModelAndView modelAndView =
+	// 		this.setErrorMessageFromQueryString(
+	// 			new ModelAndView(ViewNames.PRODUCT_LISTING.getViewName()),
+	// 			queryParameters);
 
-			modelAndView.addObject(
-				ViewModelNames.IS_ELEVATED_USER.getValue(),
-				this.isElevatedUser(activeUserEntity.get()));
+	// 		modelAndView.addObject(
+	// 			ViewModelNames.IS_ELEVATED_USER.getValue(),
+	// 			this.isElevatedUser(activeUserEntity.get()));
 
-			return modelAndView;
-		}
+	// 		return modelAndView;
+	// 	}
 
 
 	// Properties

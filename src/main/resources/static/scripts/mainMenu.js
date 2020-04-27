@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function txnActionClick(event){
-    window.location.assign("/cart");
+    window.location.assign("cart");
 }
 
 function prodActionClick(event){
