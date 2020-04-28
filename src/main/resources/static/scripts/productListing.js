@@ -28,9 +28,15 @@ function findClickedListItemElement(clickedTarget) {
 function productClick(event) {
 	let listItem = findClickedListItemElement(event.target);
 
+	if(getTransactionId() === ""){
 	window.location.assign(
 		"/productDetail/"
 		+ listItem.querySelector("input[name='productId'][type='hidden']").value);
+	} else {
+		ajaxPost();
+	}
+
+
 }
 
 function productSearch() {
@@ -39,4 +45,13 @@ function productSearch() {
 	// refresh the page, sending the search input to the java code
 	// it will return the list of products with that search term
 	// if no products returned, no results screen... html stuff
+}
+
+
+function getTransactionIdElement(){
+	return document.getElementById("transactionId");
+}
+
+function getTransactionId(){
+	return getTransactionIdElement().value;
 }

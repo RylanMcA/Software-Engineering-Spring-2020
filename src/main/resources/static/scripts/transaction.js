@@ -1,10 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-	getCancelButtonId().addEventListener("click", deleteActionClick);
+	getCancelButtonId().addEventListener("click", cancelActionClick);
 
 });
 
-function deleteActionClick(event) {
+
+
+
+//Cancel the entire transaction
+function cancelActionClick(event) {
 	const deleteActionElement = event.target;
 	const deleteActionUrl = ("/api/transaction/" + getTransactionId());
 
@@ -29,9 +33,6 @@ function getTransactionId(){
     return getTransactionElementId().value;
 }
 
-
-
 function getCancelButtonId(){
     return document.getElementById("cancelButton")
-
 }

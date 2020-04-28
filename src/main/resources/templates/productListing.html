@@ -33,9 +33,11 @@
 
 		<div class="productsWrapper">
 			<div th:class="not ${isElevatedUser} ? hidden : ''">
-				<a href="/productDetail/" class="button">Create New</a>
+				<div th:type="not ${transactionInProgress} ? hidden : ''">
+					<a href="/productDetail/" class="button">Create New</a>
+				</div>
 			</div>
-
+			
 			<br /><br />
 			<ul id="productsListing" class="products">
 				<li th:each="product : ${products}">
@@ -46,7 +48,7 @@
 					<br />&nbsp;&nbsp;<span class="productCreatedOnDisplay" th:text="${product.createdOn}">12/31/1999</span>
 				</li>
 			</ul>
-		</div>
+		</div> 
 
 		<div class="hidden">
 			<input type="checkbox" id="isRefreshed" class="hidden">

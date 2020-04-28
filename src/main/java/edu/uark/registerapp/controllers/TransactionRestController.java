@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.uark.registerapp.commands.exceptions.UnauthorizedException;
 import edu.uark.registerapp.commands.transactions.TransactionCreateCommand;
 import edu.uark.registerapp.commands.transactions.TransactionDeleteCommand;
+import edu.uark.registerapp.commands.transactions.TransactionEntryCreateCommand;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.ApiResponse;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
@@ -84,10 +85,55 @@ public class TransactionRestController extends BaseRestController {
 		return new ApiResponse();
 	}
 
+
+	@RequestMapping(value="/{transactionId}/{productId}",method=RequestMethod.POST)
+	public @ResponseBody ApiResponse addProduct(
+		@PathVariable final UUID transactionId,
+		@PathVariable final UUID productId,
+		final HttpServletRequest request,
+		final HttpServletResponse response
+	){
+		try {
+			final ActiveUserEntity activeUserEntity =
+				this.validateActiveUserCommand
+					.setSessionKey(request.getSession().getId())
+					.execute();
+
+
+
+			if (activeUserEntity == null) {
+				return this.redirectSessionNotActive(response);
+			}
+
+
+			createEntry.setTransactionId(transactionId).setProductId(productId).execute();
+
+			return (new ApiResponse())
+				.setRedirectUrl(
+					ViewNames.PRODUCT_LISTING.getRoute()
+						.concat("/")
+						.concat(transactionId.toString()));
+		} catch (final UnauthorizedException e) {
+			return this.redirectSessionNotActive(response);
+		} catch (final Exception e) {
+			System.out.println(
+				"An unknown error occurred while attempting to add an entry. "
+				+ e.getMessage());
+
+			response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+			return (new ApiResponse())
+				.setErrorMessage("Unable to add entry. "
+					+ e.getMessage());
+		}
+	}
+
 	@Autowired
 	private TransactionCreateCommand transactionCreateCommand;
 
 	@Autowired
 	private TransactionDeleteCommand deleteTransaction;
+
+	@Autowired 
+	private TransactionEntryCreateCommand createEntry;
 
 }

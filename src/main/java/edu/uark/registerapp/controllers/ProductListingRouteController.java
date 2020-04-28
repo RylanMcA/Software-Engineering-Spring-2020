@@ -46,6 +46,7 @@ public class ProductListingRouteController extends BaseRouteController {
 			this.isElevatedUser(activeUserEntity.get()));
 		
 		modelAndView.addObject("transactionId","");
+		modelAndView.addObject("transactionInProgress",false);
 
 
 		try {
@@ -92,6 +93,7 @@ public class ProductListingRouteController extends BaseRouteController {
 		this.isElevatedUser(activeUserEntity.get()));
 
 	modelAndView.addObject("transactionId",transactionId);
+	modelAndView.addObject("transactionInProgress",true);
 
 	try {
 		// if no search is entered, show all products
