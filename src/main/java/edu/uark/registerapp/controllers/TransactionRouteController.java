@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-// import edu.uark.registerapp.commands.products.ProductsQuery;
-// import edu.uark.registerapp.commands.products.ProductCreateCommand;
-// import edu.uark.registerapp.commands.products.ProductDeleteCommand;
-// import edu.uark.registerapp.commands.products.ProductUpdateCommand;
-// import edu.uark.registerapp.commands.products.ProductsSearch;
+import edu.uark.registerapp.commands.products.ProductsQuery;
+import edu.uark.registerapp.commands.products.ProductCreateCommand;
+import edu.uark.registerapp.commands.products.ProductDeleteCommand;
+import edu.uark.registerapp.commands.products.ProductUpdateCommand;
+import edu.uark.registerapp.commands.products.ProductsSearch;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/transaction")
-public class ShoppingCartController extends BaseRouteController {
+public class TransactionRouteController extends BaseRouteController {
     @RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
     public ModelAndView start(
 		@PathVariable final UUID transactionId,
@@ -76,63 +76,9 @@ public class ShoppingCartController extends BaseRouteController {
     
     // Properties
 	@Autowired
-	//private ProductsQuery productsQuery;
-	//private ProductsSearch productsSearch;
+	private ProductsQuery productsQuery;
+	private ProductsSearch productsSearch;
 
-    //This is a method for adding a product to the cart
-    //If the product is in the cart, add more
-    //If the product is not in the cart, add to cart
-	@RequestMapping()
-	public ModelAndView add() {
-		return (new ModelAndView());
-	}
 
-    //This is the method for removing a product from the cart
-    //If the product is in the cart, remove it
-    //User should not be able to remove an item that doesn't exist
-
-/*	
-	@RequestMapping(value = "/{productId}", method = RequestMethod.DELETE)
-	public @ResponseBody ApiResponse deleteFromCart(
-		@PathVariable final UUID productId, 
-		final HttpServletRequest request,
-		final HttpServletResponse response
-	) {
-
-		final ApiResponse elevatedUserResponse =
-			this.redirectUserNotElevated(
-				request,
-				response,
-				ViewNames.PRODUCT_LISTING.getRoute());
-
-		if (!elevatedUserResponse.getRedirectUrl().equals(StringUtils.EMPTY)) {
-			return elevatedUserResponse;
-		}
-
-		this.productDeleteCommand
-			.setProductId(productId)
-			.execute();
-
-		return new ApiResponse();
-	}
-	
-*/
-    
-    //This is the method for empyting the shopping cart
-    //Removes all products from the cart
-    //Should not be able to empty an empty carts
-
-    /*@RequestMapping()
-    public ModelAndView cancel() {
-        return (new ModelAndView());
-    }*/
-
-    //This is the method to print a summary of the transaction
-    //Displays each product in shopping cart along with price/quantity/total quantity/tostal price
-
-    /*@RequestMapping()
-    public ModelAndView summary() {
-        return (new ModelAndView());
-    }*/
 
 }
