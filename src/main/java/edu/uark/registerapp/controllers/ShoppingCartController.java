@@ -31,12 +31,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/cart")
 public class ShoppingCartController extends BaseRouteController {
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
     public ModelAndView start(
+		@PathVariable final UUID transactionId,
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
 	) {
 
+		System.out.println("Displaying cart for transaction " + transactionId.toString());
 		final Optional<ActiveUserEntity> activeUserEntity =
 			this.getCurrentUser(request);
 		if (!activeUserEntity.isPresent()) {

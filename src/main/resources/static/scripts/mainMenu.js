@@ -3,11 +3,16 @@ document.addEventListener("DOMContentLoaded", () => {
     getProductListIdElement().addEventListener("click", prodActionClick);
     getEmployeeCreateIdElement().addEventListener("click",createActionClick);
     getEmployeeDetailIdElement().addEventListener("click",detailActionClick);
-    getReportIdElement().addEventListener("click",reportActionClick);
 });
 
 function txnActionClick(event){
-    window.location.assign("cart");
+    ajaxPost("/api/transaction/", {}, (callbackResponse) => {
+        if (isErrorResponse(callbackResponse)) {
+            return;
+        }
+
+        window.location.assign(callbackResponse.data.redirectUrl);
+    });
 }
 
 function prodActionClick(event){
