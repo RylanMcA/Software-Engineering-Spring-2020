@@ -21,9 +21,15 @@ function deleteActionClick(event) {
 
 
 //getters
-function getTransactionId() {
+function getTransactionElementId() {
 	return document.getElementById("transactionId");
 }
+
+function getTransactionid(){
+    return getTransactionElementId().value;
+}
+
+
 
 function getCancelButtonId(){
     return document.getElementById("cancelButton")
