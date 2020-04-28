@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 function validateForm() {
 	const cardNumEditElement = getCardNumEditElement();
-	if (!cardNumEditElement.value.matches("\d{4}\s\d{4}\s\d{4}")) {
+	var regex = /\d{4}\s\d{4}\s\d{4}/;
+	if (!regex.test(cardNumEditElement.value)) {
 
 		displayError("Please provide a valid Credit Card Number.");
 
@@ -17,7 +18,8 @@ function validateForm() {
 	}
 
 	const expDateEditElement = getExpDateEditElement();
-	if (!expDateEditElement.value.matches("\d{2}/\d{2}")) {
+	var nextRegex = /\d{2}\/\d{2}/;
+	if (!nextRegex.test(expDateEditElement.value)) {
 
 		displayError("Please provide a valid Expiration Date.");
 
@@ -27,8 +29,9 @@ function validateForm() {
 		return false;
     }
     
-    const secNumEditElement = getSecNumEditElement();
-    if (!secNumEditElement.value.matches("\d{3}")) {
+	const secNumEditElement = getSecNumEditElement();
+	var lastRegex = /\d{3}/;
+    if (!lastRegex.test(secNumEditElement.value)) {
 
 		displayError("Please provide a valid Security Number.");
 		
