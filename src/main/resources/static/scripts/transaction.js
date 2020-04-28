@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-	getCancelButtonId().addEventListener("click", cancelTransaction);
+	getCancelButtonId().addEventListener("click", deleteActionClick);
 
 });
 
