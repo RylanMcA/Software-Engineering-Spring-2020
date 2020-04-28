@@ -1,7 +1,7 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
-	<title>Register - Products</title>
+	<title>Register - Transaction</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 
 	<link rel="stylesheet" type="text/css" href="/styles/master.css">
@@ -28,9 +28,10 @@
 			<br>
 		</div>
 
+		<input type="hidden" name="transactionId" th:value="${transactionId}"/>
 		<div class="productsWrapper">
 			<div th:class="not ${isElevatedUser} ? hidden : ''">
-				<a href="/productDetail/" class="button">Add Item to Cart</a>
+				<!--<a href="/productDetail/" class="button">Add Item to Cart</a>-->
 			</div>
 
 			<br /><br />
@@ -42,8 +43,12 @@
 					<br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${product.count}">0</span>
 					<br />&nbsp;&nbsp;<span class="productCreatedOnDisplay" th:text="${product.createdOn}">12/31/1999</span>
 				</li>
+				<input type="number" id="quantity" name="quantity" min="1" max="10" placeholder="enter quantity">
 			</ul>
 		</div>
+
+		<a href="/payment" class="button">Pay for items</a> 
+
 
 		<div class="hidden">
 			<input type="checkbox" id="isRefreshed" class="hidden">

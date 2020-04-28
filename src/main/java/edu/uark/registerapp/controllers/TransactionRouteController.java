@@ -54,10 +54,13 @@ public class TransactionRouteController extends BaseRouteController {
 			ViewModelNames.IS_ELEVATED_USER.getValue(),
 			this.isElevatedUser(activeUserEntity.get()));
 
+		modelAndView.addObject("transactionId",transactionId);
+
 		try {
 			// if no search is entered, show all products in cart
 			modelAndView.addObject(
-				ViewModelNames.CART.getValue());
+				ViewModelNames.PRODUCTS.getValue(),
+				this.productsQuery.execute());
 			// if a search term is entered, 
 			// modelAndView.addObject(
 			// 	ViewModelNames.PRODUCTS.getValue(), 
