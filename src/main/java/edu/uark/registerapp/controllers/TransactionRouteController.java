@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping(value = "/transaction")
+@RequestMapping(value = "/cart")
 public class TransactionRouteController extends BaseRouteController {
     @RequestMapping(value = "/{transactionId}", method = RequestMethod.POST)
     public ModelAndView start(
