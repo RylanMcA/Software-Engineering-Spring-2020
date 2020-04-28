@@ -42,8 +42,9 @@
 					<span class="productLookupCodeDisplay" th:text="${product.lookupCode}">lookupCode</span>
 					<br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${product.count}">0</span>
 					<br />&nbsp;&nbsp;<span class="productCreatedOnDisplay" th:text="${product.createdOn}">12/31/1999</span>
+					<input type="number" id="quantity" name="quantity" min="1" max="10" placeholder="#">
 				</li>
-				<input type="number" id="quantity" name="quantity" min="1" max="10" placeholder="enter quantity">
+				
 			</ul>
 		</div>
 
