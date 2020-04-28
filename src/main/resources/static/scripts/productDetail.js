@@ -173,4 +173,11 @@ function getProductCount() {
 function getProductCountElement() {
 	return document.getElementById("productCount");
 }
+
+function getProductPrice() {
+	return Number(getProductPriceElement().value);
+}
+function getProductPriceElement() {
+	return document.getElementById("productPrice");
+}
 // End getters and setters
