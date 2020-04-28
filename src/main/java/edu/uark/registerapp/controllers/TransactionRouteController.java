@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/transaction")
 public class TransactionRouteController extends BaseRouteController {
-    @RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{transactionId}", method = RequestMethod.POST)
     public ModelAndView start(
 		@PathVariable final UUID transactionId,
 		@RequestParam final Map<String, String> queryParameters,
