@@ -28,10 +28,12 @@
 			<br>
 		</div>
 
-		<input type="hidden" name="transactionId" th:value="${transactionId}"/>
+		<input type="hidden" id="transactionId" th:value="${transactionId}"/>
+
+
 		<div class="productsWrapper">
 			<div th:class="not ${isElevatedUser} ? hidden : ''">
-				<!--<a href="/productDetail/" class="button">Add Item to Cart</a>-->
+				<a href="/productDetail/" class="button">Add Item to Cart</a>
 			</div>
 
 			<br /><br />
@@ -42,15 +44,17 @@
 					<span class="productLookupCodeDisplay" th:text="${product.lookupCode}">lookupCode</span>
 					<br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${product.count}">0</span>
 					<br />&nbsp;&nbsp;<span class="productCreatedOnDisplay" th:text="${product.createdOn}">12/31/1999</span>
-					<input type="number" id="quantity" name="quantity" min="1" max="10" placeholder="#">
+					
 				</li>
 				
 			</ul>
 		</div>
 
-		<br>
-		<a href="/mainMenu" id="returnToMenu" class="button">Pay for items</a> 
+		<br/>
+		<br/>
+		
 		<a href="/payment" class="button">Pay for items</a> 
+		<button id="cancelButton" type="button" class="action">Delete</button>
 
 
 		<div class="hidden">

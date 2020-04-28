@@ -7,13 +7,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import antlr.StringUtils;
 import edu.uark.registerapp.commands.exceptions.UnauthorizedException;
 import edu.uark.registerapp.commands.transactions.TransactionCreateCommand;
+import edu.uark.registerapp.commands.transactions.TransactionDeleteCommand;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.ApiResponse;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
@@ -60,6 +63,32 @@ public class TransactionRestController extends BaseRestController {
 		}
 	}
 
+	@RequestMapping(value = "/{transactionId}", method = RequestMethod.DELETE)
+	public @ResponseBody ApiResponse deleteProduct(
+		@PathVariable final UUID transactionId, 
+		final HttpServletRequest request,
+		final HttpServletResponse response
+	){
+		final ApiResponse elevatedUserResponse =
+		this.redirectUserNotElevated(
+			request,
+			response,
+			ViewNames.MAIN_MENU.getRoute());
+
+		if (!elevatedUserResponse.getRedirectUrl().equals("")) {
+			return elevatedUserResponse;
+		}
+
+		this.deleteTransaction.setTransactionId(transactionId).execute();
+
+
+		return new ApiResponse();
+	}
+
 	@Autowired
 	private TransactionCreateCommand transactionCreateCommand;
+
+	@Autowired
+	private TransactionDeleteCommand deleteTransaction;
+
 }
