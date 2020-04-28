@@ -18,7 +18,7 @@ function txnActionClick(event){
 function prodActionClick(event){
     window.location.assign("productListing");
 }
-//commit
+
 function createActionClick(event){
     window.location.assign("employeeDetail");
 }
