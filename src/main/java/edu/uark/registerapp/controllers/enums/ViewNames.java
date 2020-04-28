@@ -9,7 +9,8 @@ public enum ViewNames {
 	PRODUCT_LISTING("productListing"),
 	SHOPPING_CART("shoppingCart"),
 	PAYMENT_PAGE("payment"),
-	TXN_SUMMARY("txnSummary");
+	TXN_SUMMARY("txnSummary"),
+	ADD_ITEM("addItem");
 	
 	public String getRoute() {
 		return this.route;
