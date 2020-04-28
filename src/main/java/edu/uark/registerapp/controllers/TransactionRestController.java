@@ -45,7 +45,7 @@ public class TransactionRestController extends BaseRestController {
 
 			return (new ApiResponse())
 				.setRedirectUrl(
-					ViewNames.CART.getRoute()
+					ViewNames.PRODUCT_LISTING.getRoute()
 						.concat("/")
 						.concat(createdTransactionId.toString()));
 		} catch (final UnauthorizedException e) {
