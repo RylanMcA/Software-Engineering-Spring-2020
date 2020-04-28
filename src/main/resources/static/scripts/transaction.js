@@ -25,7 +25,7 @@ function getTransactionElementId() {
 	return document.getElementById("transactionId");
 }
 
-function getTransactionid(){
+function getTransactionId(){
     return getTransactionElementId().value;
 }
 
