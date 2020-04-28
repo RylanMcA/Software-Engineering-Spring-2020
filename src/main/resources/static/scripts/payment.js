@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 function validateForm() {
 	const cardNumEditElement = getCardNumEditElement();
-	if (!cardNumEditElement.value.matches("\d{4}\s\d{4}\s\d{4}")) {
+	if (true) {
 
 		displayError("Please provide a valid Credit Card Number.");
 
