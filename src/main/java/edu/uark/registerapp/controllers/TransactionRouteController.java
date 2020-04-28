@@ -72,8 +72,8 @@ public class TransactionRouteController extends BaseRouteController {
 		}
 		
 		return modelAndView;
-    }
-    
+	}
+	
     // Properties
 	@Autowired
 	private ProductsQuery productsQuery;

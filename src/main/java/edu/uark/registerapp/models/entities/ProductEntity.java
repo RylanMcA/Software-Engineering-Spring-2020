@@ -97,7 +97,7 @@ public class ProductEntity {
 	}
 
 	public ProductEntity(final Product apiProduct) {
-		this.price = 0L; // TODO: Add price to Product.java and allow for edits via the productDetail view
+		this.price = 0L;
 		this.id = new UUID(0, 0);
 		this.count = apiProduct.getCount();
 		this.lookupCode = apiProduct.getLookupCode();
