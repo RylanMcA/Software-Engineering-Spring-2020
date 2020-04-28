@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 function validateForm() {
 	const cardNumEditElement = getCardNumEditElement();
-	if (isNaN(Number(cardNumEditElement.value)) || (Number(cardNumEditElement.value) <= 0) || !cardNumEditElement.value.matches("\d{4}\s\d{4}\s\d{4}")) {
+	if (!cardNumEditElement.value.matches("\d{4}\s\d{4}\s\d{4}")) {
 
 		displayError("Please provide a valid Credit Card Number.");
 
@@ -28,7 +28,7 @@ function validateForm() {
     }
     
     const secNumEditElement = getSecNumEditElement();
-    if (isNaN(Number(secNumEditElement.value)) || !secNumEditElement.value.matches("\d{3}")) {
+    if (!secNumEditElement.value.matches("\d{3}")) {
 
 		displayError("Please provide a valid Security Number.");
 		
