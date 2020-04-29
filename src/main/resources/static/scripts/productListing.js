@@ -33,14 +33,14 @@ function productClick(event) {
 		"/productDetail/"
 		+ listItem.querySelector("input[name='productId'][type='hidden']").value);
 	} else {
-		saveData = {
-			id: getProductId(),
-			transactionId: getTransactionId() };
+		// saveData = {
+		// 	id: getProductId(),
+		// 	transactionId: getTransactionId() };
 
-		createUrl = "/api/transaction/"+getTransactionId()+getProductId();
+		createUrl = "/api/transaction/"+getTransactionId()+"/"+getProductId();
 
-		ajaxPost(createUrl,saveData,(callbackResponse) => {
-			getSaveActionElement.disable = false;
+		ajaxPost(createUrl,{},(callbackResponse) => {
+			productListElements.disable = false;
 
 			if (isErrorResponse(callbackResponse)) {
 				return;
@@ -81,3 +81,4 @@ function getProductIdElement(){
 function getProductId(){
 	return getProductIdElement().value;
 }
+
