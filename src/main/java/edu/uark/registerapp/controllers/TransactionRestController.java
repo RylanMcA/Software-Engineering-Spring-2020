@@ -143,8 +143,7 @@ public class TransactionRestController extends BaseRestController {
 			return elevatedUserResponse;
 		}
 
-		this.deleteEntry.setTransactionId(transactionId)
-		setProductId(productId).execute();
+		this.deleteEntry.setTransactionId(transactionId).setProductId(productId).execute();
 
 
 		return (new ApiResponse()).setRedirectUrl(
