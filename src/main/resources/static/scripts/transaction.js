@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const productListElements = document.getElementById("productsCart").children;
 
 	for (let i = 0; i < productListElements.length; i++) {
-		productListElements[i].addEventListener("click", productClick);
+		productListElements[i].addEventListener("click", removeClick);
 	}
 
     getCancelButtonId().addEventListener("click", cancelActionClick);
@@ -33,9 +33,9 @@ function removeClick(event){
     clickedItem = listItem.querySelector("input[name='productId'][type='hidden']").value;
     
     const deleteActionElement = event.target;
-    deleteActionUrl = "/api/transaction/"+getTransactionId()+clickedItem;
+    deleteUrl = "/api/transaction/"+getTransactionId()+"/"+clickedItem;
 
-    ajaxDelete(deleteActionUrl, (callbackResponse) => {
+    ajaxDelete(deleteUrl, (callbackResponse) => {
 		deleteActionElement.disabled = false;
 
 		if (isSuccessResponse(callbackResponse)) {
