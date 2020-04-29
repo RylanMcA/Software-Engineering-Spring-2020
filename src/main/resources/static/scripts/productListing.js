@@ -34,8 +34,12 @@ function productClick(event) {
 		+ listItem.querySelector("input[name='productId'][type='hidden']").value);
 	} else {
 		createUrl = "/api/transaction/"+getTransactionId()+getProductId();
-		ajaxPost(createUrl,0,((callbackResponse) => {
-				window.location.replace("/mainMenu"); }));
+		ajaxPost(createUrl,{},(callbackResponse) => {
+			if (isErrorResponse(callbackResponse)) {
+				return;
+			}
+			window.location.assign(callbackResponse.data.redirectUrl);
+		});
 	}
 
 
