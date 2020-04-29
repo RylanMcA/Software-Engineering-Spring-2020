@@ -81,6 +81,6 @@ function getProductId(){
 }
 
 function getSummaryElementId(){
-	return document.getElementById("summary")
+	return document.getElementById("summaryPage")
 }
 
