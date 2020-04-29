@@ -57,7 +57,7 @@ function viewSummary(event){
 
 function productSearch() {
 	// temporary alert
-	alert(document.getElementById("searchInput").value);
+	// alert(document.getElementById("searchInput").value);
 	// refresh the page, sending the search input to the java code
 	// it will return the list of products with that search term
 	// if no products returned, no results screen... html stuff
