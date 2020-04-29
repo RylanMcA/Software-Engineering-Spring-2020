@@ -33,8 +33,8 @@
 		<input type="hidden" id="transactionId" th:value="${transactionId}"/>
 
 		<div class="productsWrapper">
-			<div th:class="not ${isElevatedUser} ? hidden : ''">
-				<div th:type="${transactionInProgress} ? hidden : ''">
+			<div th:type="not ${transactionInProgress} ? hidden : ''"></div>
+				<div th:class="not ${isElevatedUser} ? hidden : ''">
 					<a href="/productDetail/" class="button">Create New</a>
 				</div>
 			</div>
