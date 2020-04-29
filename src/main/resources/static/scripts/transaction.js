@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
     getCancelButtonId().addEventListener("click", cancelActionClick);
-    getPaymentButton().addEventListener("click", paymentActionClick);
+	getPaymentButton().addEventListener("click", paymentActionClick);
 });
 
 function findClickedListItemElement(clickedTarget) {
