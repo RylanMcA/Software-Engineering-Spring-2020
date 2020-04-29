@@ -35,11 +35,13 @@ function productClick(event) {
 	} else {
 		saveData = {
 			id: getProductId(),
-			transactionId: getTransactionId()
+			transactionId: getTransactionId() };
 
-		};
 		createUrl = "/api/transaction/"+getTransactionId()+getProductId();
+
 		ajaxPost(createUrl,saveData,(callbackResponse) => {
+			getSaveActionElement.disable = false;
+
 			if (isErrorResponse(callbackResponse)) {
 				return;
 			}

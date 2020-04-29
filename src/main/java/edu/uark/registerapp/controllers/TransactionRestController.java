@@ -86,7 +86,7 @@ public class TransactionRestController extends BaseRestController {
 	}
 
 
-	@RequestMapping(value="/{transactionId}/{productId}",method=RequestMethod.POST)
+	@RequestMapping(value="/{transactionId}",method=RequestMethod.POST)
 	public @ResponseBody ApiResponse addProduct(
 		@PathVariable final UUID transactionId,
 		@PathVariable final UUID productId,
@@ -99,12 +99,9 @@ public class TransactionRestController extends BaseRestController {
 					.setSessionKey(request.getSession().getId())
 					.execute();
 
-
-
 			if (activeUserEntity == null) {
 				return this.redirectSessionNotActive(response);
 			}
-
 
 			createEntry.setTransactionId(transactionId).setProductId(productId).execute();
 
