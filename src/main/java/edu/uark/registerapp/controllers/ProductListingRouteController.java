@@ -24,7 +24,7 @@ import edu.uark.registerapp.models.entities.ActiveUserEntity;
 @Controller
 @RequestMapping(value = "/productListing")
 public class ProductListingRouteController extends BaseRouteController {
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/{searchQuery}", method = RequestMethod.GET)
 	public ModelAndView showProductListing(
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
@@ -70,9 +70,10 @@ public class ProductListingRouteController extends BaseRouteController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/{transactionId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{transactionId}/{searchQuery}", method = RequestMethod.GET)
 	public ModelAndView addItemListing(
 		@PathVariable final UUID transactionId,
+		final String search,
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
 	){
