@@ -16,7 +16,7 @@ function txnActionClick(event){
 }
 
 function prodActionClick(event){
-    window.location.assign("/productListing/");
+    window.location.assign("/productListing/null");
 }
 
 function createActionClick(event){
