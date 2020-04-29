@@ -32,7 +32,7 @@
 			<br /><br />
 
 			<ul id="productsListing" class="products">
-				<li th:each="product : ${inCart}">
+				<li th:each="product : ${inCart}"> <!-- -->
 					<button id="remove" type="button" class="action">Remove</button> 
 					<input type="hidden" name="productId" th:value="${product.id}" />
 					<span class="productLookupCodeDisplay" th:text="${product.lookupCode}">lookupCode</span>
