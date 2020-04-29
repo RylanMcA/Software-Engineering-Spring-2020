@@ -17,9 +17,9 @@ public class TransactionDeleteCommand implements VoidCommandInterface {
         final Optional<TransactionEntity> transactionEntity =
         this.transactionRepository.findById(this.transactionId);
         if (!transactionEntity.isPresent()) { // No record with the associated record ID exists in the database.
-			throw new NotFoundException("Product");
-        }
-        
+			throw new NotFoundException("N/A");
+		}
+		
         this.transactionRepository.delete(transactionEntity.get());
 	}
 
