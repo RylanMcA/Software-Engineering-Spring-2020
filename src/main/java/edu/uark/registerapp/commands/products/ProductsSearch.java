@@ -17,21 +17,25 @@ public class ProductsSearch implements ResultCommandInterface<List<Product>> {
 	public List<Product> execute() {
         final LinkedList<Product> products = new LinkedList<Product>();
         
-        // local variable to store the search term, change to lowercase
-        String searchTerm = "";
-        searchTerm = searchTerm.toLowerCase();
-
 		for (final ProductEntity productEntity : productRepository.findAll()) {
             // if the product lookupcode in lowercase contains the search term
-            // then add it to the list and return those products instead of all
-            if (productEntity.getLookupCode().toLowerCase().contains(searchTerm)){
-                products.addLast(new Product(productEntity));
+            if (productEntity.getLookupCode().toLowerCase().contains(searchTerm)){ 
+                products.addLast(new Product(productEntity)); // then add it to the list and return those products instead of all
             }
 			
 		}
 		
 		return products;
 	}
+
+    public String searchTerm="";
+    public String getSearchTerm(){
+        return searchTerm.toLowerCase();
+    }
+
+    public void setSearchTerm(String term){
+        this.searchTerm = term;
+    }
 
 	@Autowired
 	ProductRepository productRepository;
