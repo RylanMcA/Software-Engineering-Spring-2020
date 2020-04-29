@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	getSummaryElementId().addEventListener("click",viewSummary);
+	getSearchButtonId().addEventListener("click",productSearch);
 });
 
 function findClickedListItemElement(clickedTarget) {
@@ -55,12 +56,33 @@ function viewSummary(event){
 
 }
 
-function productSearch() {
+
+function productSearch(event) {
 	// temporary alert
 	// alert(document.getElementById("searchInput").value);
 	// refresh the page, sending the search input to the java code
 	// it will return the list of products with that search term
 	// if no products returned, no results screen... html stuff
+	const productListElements = document.getElementById("productsListing").children;
+	for (let i = 0; i < productListElements.length; i++) {
+		const lookupcode = productListElements[i]
+			.querySelector("span.productLookupCodeDisplay")
+			.innerHTML;
+		if (lookupcode.toLowerCase().indexOf(event.target.value.toLowerCase()) >= 0) {
+			if (productListElements[i].classList.contains("hidden")) {
+				productListElements[i].classList.remove("hidden");
+			}
+		} else {
+			if (!productListElements[i].classList.contains("hidden")) {
+				productListElements[i].classList.add("hidden");
+			}
+		}
+	}
+}
+
+function getSearchButtonId(){
+	return document.getElementById("searchInput")
+
 }
 
 
