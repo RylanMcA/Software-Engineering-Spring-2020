@@ -33,7 +33,7 @@
 
 		<div class="productsWrapper">
 			<div th:class="not ${isElevatedUser} ? hidden : ''">
-				<div th:type="not ${transactionInProgress} ? hidden : ''">
+				<div th:type="${transactionInProgress} ? hidden : ''">
 					<a href="/productDetail/" class="button">Create New</a>
 				</div>
 			</div>
@@ -50,6 +50,7 @@
 			</ul>
 		</div> 
 
+		<button id="summaryPage" class="button">Cart Summary</button>
 		<div class="hidden">
 			<input type="checkbox" id="isRefreshed" class="hidden">
 			<script type="text/javascript">

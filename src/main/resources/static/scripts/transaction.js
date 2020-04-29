@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-	const productListElements = document.getElementById("productsListing").children;
+	const productListElements = document.getElementById("productsCart").children;
 
 	for (let i = 0; i < productListElements.length; i++) {
 		productListElements[i].addEventListener("click", removeClick);
 	}
     
     getCancelButtonId().addEventListener("click", cancelActionClick);
-    getPaymentButton().addEventListener("click",paymentActionClick);
+    getPaymentButton().addEventListener("click", paymentActionClick);
     
 });
 

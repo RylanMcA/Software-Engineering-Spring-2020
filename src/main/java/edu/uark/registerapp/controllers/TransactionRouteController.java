@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.uark.registerapp.commands.products.ProductsQuery;
 import edu.uark.registerapp.commands.transactions.TransactionEntryQueryCommand;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
@@ -38,15 +37,13 @@ public class TransactionRouteController extends BaseRouteController {
 			return buildInvalidSessionResponse();
 		}
 
-
-
 		ModelAndView modelAndView =
 			this.setErrorMessageFromQueryString(
 				new ModelAndView(ViewNames.SHOPPING_CART.getViewName()),
 				queryParameters);
 
 		modelAndView.addObject(
-			"inCart",
+			"products",
 			this.entryQuery.setTransactionId(transactionId).execute());
 
 		modelAndView.addObject(

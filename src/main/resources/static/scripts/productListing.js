@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	for (let i = 0; i < productListElements.length; i++) {
 		productListElements[i].addEventListener("click", productClick);
 	}
+
+	getSummaryElementId().addEventListener("click",viewSummary);
 });
 
 function findClickedListItemElement(clickedTarget) {
@@ -44,12 +46,12 @@ function productClick(event) {
 			window.location.assign(callbackResponse.data.redirectUrl);
 		});
 	}
+}
 
-
-
-	/*function ajaxPost(resourceRelativeUri, data, callback) {
-	return ajax(resourceRelativeUri, "POST", data, callback);
-}*/
+function viewSummary(event){
+	if(transactionId != ""){
+		window.location.assign("/cart/"+getTransactionId());
+	}
 
 }
 
@@ -76,5 +78,9 @@ function getProductIdElement(){
 
 function getProductId(){
 	return getProductIdElement().value;
+}
+
+function getSummaryElementId(){
+	return document.getElementById("summary")
 }
 
