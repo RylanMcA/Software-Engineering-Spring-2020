@@ -33,9 +33,16 @@ function productClick(event) {
 		"/productDetail/"
 		+ listItem.querySelector("input[name='productId'][type='hidden']").value);
 	} else {
-		ajaxPost();
+		createUrl = "/api/transaction/"+getTransactionId()+getProductId();
+		ajaxPost(createUrl,0,((callbackResponse) => {
+				window.location.replace("/mainMenu"); }));
 	}
 
+
+
+	/*function ajaxPost(resourceRelativeUri, data, callback) {
+	return ajax(resourceRelativeUri, "POST", data, callback);
+}*/
 
 }
 
@@ -54,4 +61,12 @@ function getTransactionIdElement(){
 
 function getTransactionId(){
 	return getTransactionIdElement().value;
+}
+
+function getProductIdElement(){
+	return document.getElementById("productId");
+}
+
+function getProductId(){
+	return getProductIdElement().value;
 }
