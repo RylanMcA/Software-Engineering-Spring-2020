@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getCancelButtonId().addEventListener("click", cancelActionClick);
     getPaymentButton().addEventListener("click", paymentActionClick);
+    getAddButtonId().addEventListener("click", addCartClick);
 });
 
 function findClickedListItemElement(clickedTarget) {
@@ -43,6 +44,10 @@ function removeClick(event){
 		}
 	});
 
+}
+
+function addCartClick(event){
+    window.location.assign("/productList"+getTransactionId());
 }
 
 function paymentActionClick(event){
@@ -85,4 +90,9 @@ function getPaymentButton(){
 
 function getRemoveButtonId(){
     return document.getElementById("remove")
+}
+
+function getAddButtonId(){
+    return document.getElementById("addCart")
+
 }
