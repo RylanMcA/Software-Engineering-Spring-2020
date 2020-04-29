@@ -50,14 +50,9 @@ public class ProductListingRouteController extends BaseRouteController {
 
 
 		try {
-			// if no search is entered, show all products
 			modelAndView.addObject(
 				ViewModelNames.PRODUCTS.getValue(),
 				this.productsQuery.execute());
-			// if a search term is entered, 
-			// modelAndView.addObject(
-			// 	ViewModelNames.PRODUCTS.getValue(), 
-			// 	this.productsSearch.execute());
 		} catch (final Exception e) {
 			modelAndView.addObject(
 				ViewModelNames.ERROR_MESSAGE.getValue(),
@@ -96,14 +91,9 @@ public class ProductListingRouteController extends BaseRouteController {
 	modelAndView.addObject("transactionInProgress",true);
 
 	try {
-		// if no search is entered, show all products
 		modelAndView.addObject(
 			ViewModelNames.PRODUCTS.getValue(),
 			this.productsQuery.execute());
-		// if a search term is entered, 
-		// modelAndView.addObject(
-		// 	ViewModelNames.PRODUCTS.getValue(), 
-		// 	this.productsSearch.execute());
 	} catch (final Exception e) {
 		modelAndView.addObject(
 			ViewModelNames.ERROR_MESSAGE.getValue(),
