@@ -35,7 +35,7 @@
 		<div class="productsWrapper">
 			<div th:class="not ${transactionInProgress} ? hidden : ''">
 				<div th:class="not ${isElevatedUser} ? hidden : ''">
-					<a href="/productDetail/" class="button">Create New</a>
+					<a href="/productDetail/" th:class="not ${transactionInProgress} ? hidden : button">Create New</a>
 				</div>
 			</div>
 			
