@@ -64,7 +64,7 @@ public class TransactionRestController extends BaseRestController {
 	}
 
 	@RequestMapping(value = "/{transactionId}", method = RequestMethod.DELETE)
-	public @ResponseBody ApiResponse deleteProduct(
+	public @ResponseBody ApiResponse cancelTransaction(
 		@PathVariable final UUID transactionId, 
 		final HttpServletRequest request,
 		final HttpServletResponse response
@@ -124,6 +124,29 @@ public class TransactionRestController extends BaseRestController {
 					+ e.getMessage());
 		}
 	}
+
+	@RequestMapping(value = "/{transactionId}/{prodcutId}", method = RequestMethod.DELETE)
+	public @ResponseBody ApiResponse deleteProductEntry(
+		@PathVariable final UUID transactionId, 
+		final HttpServletRequest request,
+		final HttpServletResponse response
+	){
+		final ApiResponse elevatedUserResponse =
+		this.redirectUserNotElevated(
+			request,
+			response,
+			ViewNames.MAIN_MENU.getRoute());
+
+		if (!elevatedUserResponse.getRedirectUrl().equals("")) {
+			return elevatedUserResponse;
+		}
+
+		this.deleteTransaction.setTransactionId(transactionId).execute();
+
+
+		return new ApiResponse();
+	}
+
 
 	@Autowired
 	private TransactionCreateCommand transactionCreateCommand;

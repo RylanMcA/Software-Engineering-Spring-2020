@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.uark.registerapp.commands.products.ProductsQuery;
-import edu.uark.registerapp.commands.products.ProductsSearch;
+import edu.uark.registerapp.commands.transactions.TransactionEntryQueryCommand;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
-import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,10 +38,16 @@ public class TransactionRouteController extends BaseRouteController {
 			return buildInvalidSessionResponse();
 		}
 
+
+
 		ModelAndView modelAndView =
 			this.setErrorMessageFromQueryString(
 				new ModelAndView(ViewNames.SHOPPING_CART.getViewName()),
 				queryParameters);
+
+		modelAndView.addObject(
+			"inCart",
+			this.entryQuery.setTransactionId(transactionId).execute());
 
 		modelAndView.addObject(
 			ViewModelNames.IS_ELEVATED_USER.getValue(),
@@ -56,7 +61,7 @@ public class TransactionRouteController extends BaseRouteController {
     
     // Properties
 	@Autowired
-	private ProductsQuery productsQuery;
+	private TransactionEntryQueryCommand entryQuery;
 	
 
 
