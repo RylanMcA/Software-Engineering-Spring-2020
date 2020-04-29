@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.uark.registerapp.commands.ResultCommandInterface;
+import edu.uark.registerapp.commands.exceptions.ConflictException;
 import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.entities.ProductEntity;
 import edu.uark.registerapp.models.entities.TransactionEntryEntity;
@@ -16,8 +17,17 @@ import edu.uark.registerapp.models.repositories.TransactionEntryRepository;
 public class TransactionEntryCreateCommand implements ResultCommandInterface<UUID> {
 	@Override
 	public UUID execute() {
+
+
         Optional<ProductEntity> productOp = productRepository.findById(productId);
-        Product product = new Product(productOp.get());
+		Product product = new Product(productOp.get());
+
+		Optional<TransactionEntryEntity> dupeCheck = 
+		transactionEntryRepository.findByTransactionIdAndProductId(transactionId, productId);
+		
+		if(dupeCheck.isPresent()){
+			throw new ConflictException("already exists");
+		}
 
 		final TransactionEntryEntity createdTransactionEntity =
 			this.transactionEntryRepository.save(
