@@ -53,7 +53,9 @@
 
 		<br/>
 		<br/>
-		<button id="summaryPage" type="button" class="action">Cart Summary</button>
+		<div th:class="not ${transactionInProgress} ? hidden : ''">
+			<button id="summaryPage" type="button" class="action">Cart Summary</button>
+		</div>
 		<div class="hidden">
 			<input type="checkbox" id="isRefreshed" class="hidden">
 			<script type="text/javascript">
