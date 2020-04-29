@@ -32,9 +32,10 @@
 					
 					<input type="hidden" name="productId" th:value="${product.id}" />
 					<span class="productLookupCodeDisplay" th:text="${product.lookupCode}">lookupCode</span>
-					<br />&nbsp;&nbsp;<span class="productCountDisplay" th:value="${product.count}">1</span>
+					<br />&nbsp;&nbsp;<span name="count" class="productCountDisplay" th:value="${product.count}">1</span>
 					<br />&nbsp;&nbsp;<span class="productCreatedOnDisplay" th:text="${product.price}">12/31/1999</span>
-					<br><button id="remove" type="button">Remove</button> 	
+					<br><br>
+					<button id="remove" type="button">Remove</button> 	
 					<button id="addOne" type="button">+1</button> 	
 				</li>	
 			</ul>

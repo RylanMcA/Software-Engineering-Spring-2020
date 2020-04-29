@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getCancelButtonId().addEventListener("click", cancelActionClick);
 	getPaymentButton().addEventListener("click", paymentActionClick);
+	getAddButtonId().addEventListener("click",addOne);
 });
 
 function findClickedListItemElement(clickedTarget) {
@@ -42,7 +43,12 @@ function removeClick(event){
 			window.location.replace(callbackResponse.data.redirectUrl);
 		}
 	});
+}
 
+function addOne(){
+	let listItem = findClickedListItemElement(event.target);
+	clickedItem = listItem.querySelector("span[name='count']").value;
+	clickItem.innerHTML = clickedItem+1;
 }
 
 
