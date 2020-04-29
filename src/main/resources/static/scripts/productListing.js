@@ -40,8 +40,6 @@ function productClick(event) {
 		createUrl = "/api/transaction/"+getTransactionId()+"/"+getProductId();
 
 		ajaxPost(createUrl,{},(callbackResponse) => {
-			productListElements.disable = false;
-
 			if (isErrorResponse(callbackResponse)) {
 				return;
 			}
