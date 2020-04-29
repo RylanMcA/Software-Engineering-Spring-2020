@@ -27,14 +27,15 @@ function findClickedListItemElement(clickedTarget) {
 
 function productClick(event) {
 	let listItem = findClickedListItemElement(event.target);
+	clickedItem = listItem.querySelector("input[name='productId'][type='hidden']").value;
 
 	if(getTransactionId() === ""){
 	window.location.assign(
 		"/productDetail/"
-		+ listItem.querySelector("input[name='productId'][type='hidden']").value);
+		+ clickedItem);
 	} else {
 
-		createUrl = "/api/transaction/"+getTransactionId()+"/"+listItem.querySelector("input[name='productId'][type='hidden']").value;
+		createUrl = "/api/transaction/"+getTransactionId()+"/"+clickedItem;
 
 		ajaxPost(createUrl,{},(callbackResponse) => {
 			if (isErrorResponse(callbackResponse)) {
