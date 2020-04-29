@@ -17,6 +17,7 @@ import edu.uark.registerapp.commands.exceptions.UnauthorizedException;
 import edu.uark.registerapp.commands.transactions.TransactionCreateCommand;
 import edu.uark.registerapp.commands.transactions.TransactionDeleteCommand;
 import edu.uark.registerapp.commands.transactions.TransactionEntryCreateCommand;
+import edu.uark.registerapp.commands.transactions.TransactionEntryDeleteCommand;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.ApiResponse;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
@@ -125,9 +126,10 @@ public class TransactionRestController extends BaseRestController {
 		}
 	}
 
-	@RequestMapping(value = "/{transactionId}/{prodcutId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{transactionId}/{productId}", method = RequestMethod.DELETE)
 	public @ResponseBody ApiResponse deleteProductEntry(
 		@PathVariable final UUID transactionId, 
+		@PathVariable final UUID productId,
 		final HttpServletRequest request,
 		final HttpServletResponse response
 	){
@@ -141,10 +143,14 @@ public class TransactionRestController extends BaseRestController {
 			return elevatedUserResponse;
 		}
 
-		this.deleteTransaction.setTransactionId(transactionId).execute();
+		this.deleteEntry.setTransactionId(transactionId)
+		setProductId(productId).execute();
 
 
-		return new ApiResponse();
+		return (new ApiResponse()).setRedirectUrl(
+			ViewNames.CART.getRoute()
+			.concat("/").
+			concat(transactionId.toString()));
 	}
 
 
@@ -156,5 +162,8 @@ public class TransactionRestController extends BaseRestController {
 
 	@Autowired 
 	private TransactionEntryCreateCommand createEntry;
+
+	@Autowired
+	private TransactionEntryDeleteCommand deleteEntry;
 
 }

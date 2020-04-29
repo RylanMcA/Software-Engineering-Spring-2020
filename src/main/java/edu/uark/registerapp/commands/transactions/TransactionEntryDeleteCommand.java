@@ -1,6 +1,5 @@
-package edu.uark.registerapp.commands.products;
+package edu.uark.registerapp.commands.transactions;
 
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,22 +7,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.uark.registerapp.commands.VoidCommandInterface;
-import edu.uark.registerapp.commands.exceptions.NotFoundException;
-import edu.uark.registerapp.models.entities.ProductEntity;
-import edu.uark.registerapp.models.repositories.ProductRepository;
+import edu.uark.registerapp.models.entities.TransactionEntryEntity;
 import edu.uark.registerapp.models.repositories.TransactionEntryRepository;
+import edu.uark.registerapp.models.entities.TransactionEntryEntity;
 
 @Service
 public class TransactionEntryDeleteCommand implements VoidCommandInterface {
 	@Transactional
 	@Override
 	public void execute() {
-		// final Optional<ProductEntity> productEntity = this.productRepository.findById(this.productId);
-		// if (!productEntity.isPresent()) { // No record with the associated record ID exists in the database.
-		// 	throw new NotFoundException("Product");
-		// }
-
-		//this.productRepository.delete();
+        for(TransactionEntryEntity entries : transactionEntryRepository.findByTransactionId(transactionId)){
+            if(entries.getProductId() == this.productId){
+                transactionEntryRepository.delete(entries);
+            }
+        }
 	}
 
 	// Properties
@@ -50,6 +47,4 @@ public class TransactionEntryDeleteCommand implements VoidCommandInterface {
 	@Autowired
     private TransactionEntryRepository transactionEntryRepository;
     
-    @Autowired
-    private ProductRepository productRepository;
 }
