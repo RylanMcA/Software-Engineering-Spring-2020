@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function txnActionClick(event){
-    ajaxPost("/api/transaction/"+" ", {}, (callbackResponse) => {
+    ajaxPost("/api/transaction/", {}, (callbackResponse) => {
         if (isErrorResponse(callbackResponse)) {
             return;
         }
@@ -16,7 +16,7 @@ function txnActionClick(event){
 }
 
 function prodActionClick(event){
-    window.location.assign("/productListing/"+" ");
+    window.location.assign("/productListing/");
 }
 
 function createActionClick(event){
