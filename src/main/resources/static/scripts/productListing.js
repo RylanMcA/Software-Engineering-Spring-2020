@@ -33,8 +33,13 @@ function productClick(event) {
 		"/productDetail/"
 		+ listItem.querySelector("input[name='productId'][type='hidden']").value);
 	} else {
+		saveData = {
+			id: getProductId(),
+			transactionId: getTransactionId()
+
+		};
 		createUrl = "/api/transaction/"+getTransactionId()+getProductId();
-		ajaxPost(createUrl,{},(callbackResponse) => {
+		ajaxPost(createUrl,saveData,(callbackResponse) => {
 			if (isErrorResponse(callbackResponse)) {
 				return;
 			}
