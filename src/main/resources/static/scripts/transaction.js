@@ -10,6 +10,25 @@ document.addEventListener("DOMContentLoaded", () => {
     
 });
 
+function findClickedListItemElement(clickedTarget) {
+	if (clickedTarget.tagName.toLowerCase() === "li") {
+		return clickedTarget;
+	} else {
+		let ancestorIsListItem = false;
+		let ancestorElement = clickedTarget.parentElement;
+
+		while (!ancestorIsListItem && (ancestorElement != null)) {
+			ancestorIsListItem = (ancestorElement.tagName.toLowerCase() === "li");
+
+			if (!ancestorIsListItem) {
+				ancestorElement = ancestorElement.parentElement;
+			}
+		}
+
+		return (ancestorIsListItem ? ancestorElement : null);
+	}
+}
+
 function removeClick(event){
 	let listItem = findClickedListItemElement(event.target);
     clickedItem = listItem.querySelector("input[name='productId'][type='hidden']").value;
