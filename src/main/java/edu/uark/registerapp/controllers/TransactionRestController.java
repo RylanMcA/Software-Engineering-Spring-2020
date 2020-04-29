@@ -49,8 +49,7 @@ public class TransactionRestController extends BaseRestController {
 				.setRedirectUrl(
 					ViewNames.PRODUCT_LISTING.getRoute()
 						.concat("/")
-						.concat(createdTransactionId.toString()
-						.concat("null")));
+						.concat(createdTransactionId.toString()));
 		} catch (final UnauthorizedException e) {
 			return this.redirectSessionNotActive(response);
 		} catch (final Exception e) {
